@@ -42,6 +42,8 @@ def get_question(ToD, rating):
     return question
 
 while True:
+    print("Starting truth or dare game...")
+
     # wait for button T or D to be pressed to select Truth or Dare
     while True:
         if not GPIO.input(button_t):
