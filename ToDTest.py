@@ -46,6 +46,7 @@ while True:
 
     # wait for button T or D to be pressed to select Truth or Dare
     while True:
+        print("Please click the desired button:\nButton 1 for Truth\nButton 2 for Dare")
         if not GPIO.input(button_t):
             ToD = "T"
             break
