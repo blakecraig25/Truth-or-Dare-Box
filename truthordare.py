@@ -1,25 +1,21 @@
 import requests
 import json
+import time
+import keyboard
 import RPi.GPIO as GPIO
-from time import sleep
+from waveshare_LCD_1in3 import *
+from PIL import Image, ImageDraw, ImageFont
 
-GPIO.setmode(GPIO.BCM)
+# Set up LCD screen
+LCD = LCD_1in3()
+Lcd_ScanDir = LCD_1in3.SCAN_DIR_DFT
+LCD.LCD_Init(Lcd_ScanDir)
+LCD.LCD_Clear()
 
-BUTTON_T = 14
-BUTTON_D = 15
-BUTTON_PG = 16
-BUTTON_PG13 = 17
-BUTTON_R = 18
-BUTTON_YES = 19
-BUTTON_NO = 20
-
-GPIO.setup(BUTTON_T, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(BUTTON_D, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(BUTTON_PG, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(BUTTON_PG13, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(BUTTON_R, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(BUTTON_YES, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(BUTTON_NO, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+# Set up font and images
+font24 = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMono.ttf', 24)
+image = Image.new('RGB', (LCD.width, LCD.height), 'white')
+draw = ImageDraw.Draw(image)
 
 def get_question(ToD, rating):
     if ToD != "T" and ToD != "D":
@@ -41,24 +37,38 @@ def get_question(ToD, rating):
     return question
 
 while True:
-    # wait for button T or D to be pressed to select Truth or Dare
+    draw.text((10, 10), "Starting truth or dare game...", font=font24, fill='black')
+    draw.text((10, 40), "Please enter the desired game mode:", font=font24, fill='black')
+    draw.text((10, 70), "'t' for Truth", font=font24, fill='black')
+    draw.text((10, 100), "'d' for Dare", font=font24, fill='black')
+    LCD.LCD_ShowImage(image)
+    time.sleep(2)
+    # wait for T or D key to be pressed to select Truth or Dare
     while True:
-        if not GPIO.input(BUTTON_T):
+        if keyboard.is_pressed('t'):
             ToD = "T"
             break
-        elif not GPIO.input(BUTTON_D):
+        elif keyboard.is_pressed('d'):
             ToD = "D"
             break
-
-    # wait for button PG, PG13, or R to be pressed to select the rating
+    
+    # Display screen two
+    draw.rectangle((0, 0, LCD.width, LCD.height), fill='white')
+    draw.text((10, 10), "Please enter the desired rating:", font=font24, fill='black')
+    draw.text((10, 40), "'e' for PG", font=font24, fill='black')
+    draw.text((10, 70), "'m' for PG13", font=font24, fill='black')
+    draw.text((10, 100), "'h' for R", font=font24, fill='black')
+    LCD.LCD_ShowImage(image)
+    time.sleep(2)
+    # wait for PG, PG13, or R key to be pressed to select the rating
     while True:
-        if not GPIO.input(BUTTON_PG):
+        if keyboard.is_pressed('e'):
             rating = "PG"
             break
-        elif not GPIO.input(BUTTON_PG13):
+        elif keyboard.is_pressed('m'):
             rating = "PG13"
             break
-        elif not GPIO.input(BUTTON_R):
+        elif keyboard.is_pressed('h'):
             rating = "R"
             break
 
@@ -66,16 +76,18 @@ while True:
     if question:
         print(question)
 
-    # wait for button Yes or No to be pressed to continue
+    # Display screen three
+    draw.rectangle((0, 0, LCD.width, LCD.height), fill='white')
+    draw.text((10, 10), question, font=font24, fill='black')
+    draw.text((10, 40), "Would you like to keep playing?", font=font24, fill='black')
+    draw.text((10, 70), "Press 'y' to continue or 'n' to stop.", font=font24, fill='black')
+    LCD.LCD_ShowImage(image)
+    time.sleep(2)
+    # wait for Y or N key to be pressed to continue
     while True:
-        if not GPIO.input(BUTTON_YES):
+        if keyboard.is_pressed('y'):
             break
-        elif not GPIO.input(BUTTON_NO):
+        elif keyboard.is_pressed('n'):
             break
 
-    # display question on the screen
-    # assuming the screen is connected via SPI and using the st7789 driver
-    # modify the code as needed to match your actual hardware
-    # ...
-    # sleep for a short time to avoid continuous display updates
-    sleep(0.1)
+    # debounce delay to prevent multiple key presses
