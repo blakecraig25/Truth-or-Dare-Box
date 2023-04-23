@@ -16,3 +16,7 @@ draw.text((20, 30), "Hello, world!", font=None, fill="white")
 
 # display the image on the LCD
 device.display(image)
+
+# loop to keep displaying the image
+while True:
+    pass
