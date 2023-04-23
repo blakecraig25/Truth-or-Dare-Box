@@ -9,19 +9,19 @@ from luma.oled.device import ssd1306
 
 
 # Set up GPIO mode
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 GPIO.setup(25, GPIO.OUT)
 GPIO.setup(25, GPIO.OUT)
 GPIO.setup(22, GPIO.OUT)
 GPIO.setup(13, GPIO.OUT)
 
 # Set up SPI interface
-serial = spi(port=0, device=0, gpio_DC=22, gpio_RST=13, gpio=GPIO.BOARD)
+serial = spi(port=0, device=0, gpio_DC=22, gpio_RST=13, gpio=GPIO.BCM)
 
 
 
 # Set up LCD screen
-serial = spi(port=0, device=0, gpio_DC=22, gpio_RST=13, gpio=spi.GPIO.BOARD)
+serial = spi(port=0, device=0, gpio_DC=22, gpio_RST=13, gpio=spi.GPIO.BCM)
 device = ssd1306(serial)
 device.clear()
 
