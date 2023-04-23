@@ -22,7 +22,7 @@ serial = spi(port=0, device=0, gpio_DC=22, gpio_RST=13, gpio=GPIO.BCM)
 
 # Set up LCD screen
 serial = spi(port=0, device=0, gpio_DC=22, gpio_RST=13, gpio=spi.GPIO.BCM)
-device = ssd1306(serial)
+device = st7735(serial)
 device.clear()
 
 font24 = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMono.ttf', 24)
