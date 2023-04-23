@@ -3,7 +3,7 @@ import json
 import time
 import keyboard
 import RPi.GPIO as GPIO
-from waveshare_LCD_1in3 import *
+from waveshare_epd import *
 from PIL import Image, ImageDraw, ImageFont
 
 # Set up LCD screen
