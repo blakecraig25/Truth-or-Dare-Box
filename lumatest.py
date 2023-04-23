@@ -8,11 +8,12 @@ serial = spi(port=0, device=0, gpio_DC=22, gpio_RST=27)
 # create LCD device
 device = st7735(serial, rotate=0)
 
-# create an image and draw text on it
-image = Image.new(mode="RGB", size=device.size, color="white")
+# create an image and draw a rectangle and text on it
+image = Image.new(mode="RGB", size=device.size, color=(255, 255, 255))
 draw = ImageDraw.Draw(image)
-font = ImageFont.truetype("arial.ttf", size=16)
-draw.text((10, 10), "Hello, world!", font=font, fill="black")
+draw.rectangle((10, 10, device.width - 10, device.height - 10), outline="black", fill="white")
+font = ImageFont.truetype("FreeMonoBold.ttf", size=16)
+draw.text((20, 30), "Hello, world!", font=font, fill="black")
 
 # display the image on the LCD
 device.display(image)
