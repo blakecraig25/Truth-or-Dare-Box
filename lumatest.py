@@ -12,9 +12,7 @@ device = st7735(serial, rotate=0)
 image = Image.new(mode="RGB", size=device.size, color=(255, 255, 255))
 draw = ImageDraw.Draw(image)
 draw.rectangle((10, 10, device.width - 10, device.height - 10), outline="black", fill="white")
-font = ImageFont.truetype("FreeMonoBold.ttf", size=16)
-draw.text((20, 30), "Hello, world!", font=font, fill="black")
+draw.text((20, 30), "Hello, world!", font=ImageFont.load_default(), fill="black")
 
 # display the image on the LCD
 device.display(image)
-
