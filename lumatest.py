@@ -1,18 +1,39 @@
-from luma.core.interface.serial import spi
-from luma.lcd.device import st7735
+import Adafruit_SSD1306
 from PIL import Image, ImageDraw, ImageFont
 
-# create SPI interface
-serial = spi(port=0, device=0, gpio_DC=22, gpio_RST=27)
+# Raspberry Pi pin configuration:
+RST = None  # on the PiOLED this pin isnt used
+# Note the following are only used with SPI:
+DC = 23
+SPI_PORT = 0
+SPI_DEVICE = 0
 
-# create LCD device
-device = st7735(serial, rotate=0)
+# 128x32 display with hardware I2C:
+disp = Adafruit_SSD1306.SSD1306_128_32(rst=RST)
 
-# create an image and draw a rectangle and text on it
-image = Image.new(mode="RGB", size=device.size, color=(255, 255, 255))
+# Initialize library.
+disp.begin()
+
+# Clear display.
+disp.clear()
+disp.display()
+
+# Create blank image for drawing.
+# Make sure to create image with mode '1' for 1-bit color.
+width = disp.width
+height = disp.height
+image = Image.new('1', (width, height))
+
+# Get drawing object to draw on image.
 draw = ImageDraw.Draw(image)
-draw.rectangle((10, 10, device.width - 10, device.height - 10), outline="black", fill="white")
-draw.text((20, 30), "Hello, world!", font=ImageFont.load_default(), fill="black")
 
-# display the image on the LCD
-device.display(image)
+# Draw a black filled box to clear the image.
+draw.rectangle((0, 0, width, height), outline=0, fill=0)
+
+# Draw some text.
+font = ImageFont.load_default()
+draw.text((25, 15), 'Hello, world!', font=font, fill=255)
+
+# Display image.
+disp.image(image)
+disp.display()
