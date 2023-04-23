@@ -5,7 +5,7 @@ import keyboard
 import RPi.GPIO as GPIO
 from luma.core.interface.serial import spi
 from luma.core.render import canvas
-from luma.oled.device import ssd1306
+from luma.oled.device import st7735
 
 
 # Set up GPIO mode
