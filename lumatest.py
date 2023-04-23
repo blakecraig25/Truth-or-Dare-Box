@@ -12,7 +12,7 @@ device = st7735(serial, rotate=0)
 image = Image.new(mode="RGB", size=device.size, color=(0, 0, 0))
 draw = ImageDraw.Draw(image)
 draw.rectangle((10, 10, device.width - 10, device.height - 10), outline="white", fill="black")
-draw.text((20, 30), "Hello, world!", font=font, fill="white")
+draw.text((20, 30), "Hello, world!", font=None, fill="white")
 
 # display the image on the LCD
 device.display(image)
