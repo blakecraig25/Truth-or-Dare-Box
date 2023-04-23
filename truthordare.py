@@ -6,10 +6,11 @@ import RPi.GPIO as GPIO
 from luma.core.interface.serial import spi
 from luma.core.render import canvas
 from luma.lcd.device import st7735
+import spidev
 
 
 # Set up LCD screen
-serial = spi(port=0, device=0, gpio_DC=9, gpio_RST=25, gpio=spi.GPIO.BOARD)
+serial = spi(port=0, device=0, gpio_DC=22, gpio_RST=13, gpio=spi.GPIO.BOARD)
 device = st7735(serial)
 device.clear()
 
