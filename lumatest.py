@@ -7,6 +7,8 @@ serial = spi(port=0, device=0, gpio_DC=22, gpio_RST=27)
 
 # create LCD device
 device = st7735(serial, rotate=0)
+device.backlight(True)
+
 
 # create an image and draw a rectangle and text on it
 image = Image.new(mode="RGB", size=device.size, color=(255, 255, 255))
