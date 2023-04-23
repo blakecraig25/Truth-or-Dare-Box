@@ -10,7 +10,7 @@ from luma.oled.device import ssd1306
 
 # Set up GPIO mode
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(9, GPIO.OUT)
+GPIO.setup(25, GPIO.OUT)
 GPIO.setup(25, GPIO.OUT)
 GPIO.setup(22, GPIO.OUT)
 GPIO.setup(13, GPIO.OUT)
