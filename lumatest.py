@@ -1,37 +1,101 @@
-import board
-import digitalio
-import adafruit_rgb_display.st7789 as st7789
-from PIL import Image, ImageDraw, ImageFont
+import requests
+import json
+import time
+import keyboard
+import RPi.GPIO as GPIO
+from PIL import ImageFont
+from luma.core.interface.serial import spi
+from luma.core.render import canvas
+from luma.oled.device import st7789
 
-# Define the SPI and pins
-SPI_PORT = 0
-SPI_DEVICE = 0
-CS_PIN = digitalio.DigitalInOut(board.CE0)
-DC_PIN = digitalio.DigitalInOut(board.D25)
-RESET_PIN = digitalio.DigitalInOut(board.D24)
+# Set up GPIO mode
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(25, GPIO.OUT)
+GPIO.setup(22, GPIO.OUT)
+GPIO.setup(27, GPIO.OUT)
+GPIO.setup(17, GPIO.OUT)
 
-# Initialize the display
-display = st7789.ST7789(
-    board.SPI(),
-    cs=CS_PIN,
-    dc=DC_PIN,
-    rst=RESET_PIN,
-    baudrate=24000000,
-    width=240,
-    height=240,
-    x_offset=0,
-    y_offset=80,
-)
+# Set up SPI interface
+serial = spi(port=0, device=0, gpio_DC=22, gpio_RST=27, gpio=GPIO.BCM, bus_speed_hz=8000000)
 
-# Initialize the buffer
-image = Image.new("RGB", (240, 240), (0, 0, 0))
-draw = ImageDraw.Draw(image)
+# Set up LCD screen
+device = st7789(serial, width=240, height=320, rotate=0)
 
-# Set the font
-font = ImageFont.load_default()
+font24 = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMono.ttf', 24)
 
-# Draw some text
-draw.text((20, 20), "Hello, world!", font=font, fill=(255, 255, 255))
+def get_question(ToD, rating):
+    if ToD != "T" and ToD != "D":
+        print("Error: Invalid Input for Truth Or Dare.")
+        return
+    if rating != "PG" and rating != "PG13" and rating != "R":
+        print("Error: Invalid rating.")
+        return
 
-# Display the image on the screen
-display.image(image)
+    if ToD == "T":
+        response_truth = requests.get("https://api.truthordarebot.xyz/v1/truth?rating=" + rating)
+        questions_dict_truth = json.loads(response_truth.content.decode('utf-8'))
+        question = questions_dict_truth['question']
+    elif ToD == "D":
+        response_dare = requests.get("https://api.truthordarebot.xyz/v1/dare?rating=" + rating)
+        questions_dict_dare = json.loads(response_dare.content.decode('utf-8'))
+        question = questions_dict_dare['question']
+    
+    return question
+
+while True:
+    # Display screen one
+    with canvas(device) as draw:
+        draw.text((10, 10), "Starting truth or dare game...", font=font24, fill='black')
+        draw.text((10, 40), "Please enter the desired game mode:", font=font24, fill='black')
+        draw.text((10, 70), "'t' for Truth", font=font24, fill='black')
+        draw.text((10, 100), "'d' for Dare", font=font24, fill='black')
+        time.sleep(2)
+    # wait for T or D key to be pressed to select Truth or Dare
+    while True:
+        if keyboard.is_pressed('t'):
+            ToD = "T"
+            break
+        elif keyboard.is_pressed('d'):
+            ToD = "D"
+            break
+    
+    # Display screen two
+    with canvas(device) as draw:
+        draw.rectangle((0, 0, device.width, device.height), fill='white')
+        draw.text((10, 10), "Please enter the desired rating:", font=font24, fill='black')
+        draw.text((10, 40), "'e' for PG", font=font24, fill='black')
+        draw.text((10, 70), "'m' for PG13", font=font24, fill='black')
+        draw.text((10, 100), "'h' for R", font=font24, fill='black')
+        time.sleep(2)
+    # wait for PG, PG13, or R key to be pressed
+    while True:
+        if keyboard.is_pressed('e'):
+            rating = "PG"
+            break
+        elif keyboard.is_pressed('m'):
+            rating = "PG13"
+            break
+        elif keyboard.is_pressed('h'):
+            rating = "R"
+            break
+
+    question = get_question(ToD, rating)
+    if question:
+        print(question)
+
+    # Display screen three
+    with canvas(device) as draw:
+        draw.rectangle((0, 0, device.width, device.height), fill='white')
+        draw.text((10, 10), question, font=font24, fill='black')
+        draw.text((10, 40), "Would you like to keep playing?", font=font24, fill='black')
+        draw.text((10, 70), "Press 'y' to continue or 'n' to stop.", font=font24, fill='black')
+        time.sleep(2)
+    # wait for Y or N key to be pressed to continue
+    while True:
+        if keyboard.is_pressed('y'):
+            break
+        elif keyboard.is_pressed('n'):
+            break
+
+    # debounce delay to prevent multiple key presses
+    time.sleep(0.2)
