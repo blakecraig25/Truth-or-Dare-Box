@@ -25,9 +25,10 @@ spi.open(bus=SPI_PORT, device=SPI_DEVICE)
 # Create TFT LCD display class.
 disp = ST7735.ST7735(
     port=0,
-    cs=1, # GPIO 18 (Pin 12)
-    dc=24, # GPIO 24 (Pin 18)
-    backlight=25, # GPIO 25 (Pin 22)
+    cs=0,
+    dc=24,
+    backlight=25,
+    rst=23,
     rotation=0,
     spi_speed_hz=4000000)
 
@@ -36,6 +37,7 @@ disp.begin()
 
 # Clear display.
 disp.clear()
+
 
 
 
