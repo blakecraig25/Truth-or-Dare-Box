@@ -19,7 +19,8 @@ SPI_PORT = 0
 SPI_DEVICE = 0
 
 # Create a new SPI device object.
-spi = SPI.SpiDev(SPI_PORT, SPI_DEVICE)
+spi = SPI.SpiDev()
+spi.open(SPI_PORT, SPI_DEVICE)
 
 # Create TFT LCD display class.
 disp = ST7735.ST7735(
