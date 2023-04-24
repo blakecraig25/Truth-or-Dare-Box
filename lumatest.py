@@ -21,13 +21,13 @@ SPI_DEVICE = 0
 # Create TFT LCD display class.
 disp = ST7735.ST7735(
     port=SPI_PORT,
-    cs=SPI_DEVICE,
-    dc=DC,
-    rst=RST,
-    rotation=0,
+    device=SPI_DEVICE,
+    cs=GPIO.OUT,
+    dc=GPIO.OUT,
+    rst=GPIO.OUT,
     width=128,
     height=160,
-    spi=SPI.SpiDev())
+    rotation=0)
 
 # Initialize display.
 disp.begin()
