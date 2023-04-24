@@ -63,4 +63,23 @@ spi.writebytes([0x2C])
 for i in range(WIDTH * HEIGHT):
     spi.writebytes([0x00, 0x00])
 
-# Function to display
+def set_window(x0, y0, x1, y1):
+    GPIO.output(DC, GPIO.LOW)
+    spi.writebytes([0x2A])
+    GPIO.output(DC, GPIO.HIGH)
+    spi.writebytes([x0 >> 8, x0 & 0xFF, x1 >> 8, x1 & 0xFF])
+    GPIO.output(DC, GPIO.LOW)
+    spi.writebytes([0x2B])
+    GPIO.output(DC, GPIO.HIGH)
+    spi.writebytes([y0 >> 8, y0 & 0xFF, y1 >> 8, y1 & 0xFF])
+    GPIO.output(DC, GPIO.LOW)
+    spi.writebytes([0x2C])
+    GPIO.output(DC, GPIO.HIGH)
+
+def draw_pixel(x, y, color):
+    set_window(x, y, x, y)
+    GPIO.output(DC, GPIO.HIGH)
+    spi.writebytes([(color >> 8) & 0xFF, color & 0xFF])
+
+# Example usage:
+draw_pixel(0, 0, 0xFF00)  # Draws a green pixel at the top-left corner of the screen
