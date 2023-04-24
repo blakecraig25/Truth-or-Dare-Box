@@ -3,6 +3,7 @@
 import time
 import spidev
 import RPi.GPIO as GPIO
+from PIL import Image
 
 # ST7789V LCD display parameters
 WIDTH = 240
@@ -58,4 +59,8 @@ spi.writebytes([0x29]) # Display On
 
 # Clear display
 GPIO.output(DC, GPIO.LOW)
-spi.writebytes
+spi.writebytes([0x2C])
+for i in range(WIDTH * HEIGHT):
+    spi.writebytes([0x00, 0x00])
+
+# Function to display
