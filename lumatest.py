@@ -19,15 +19,15 @@ SPI_PORT = 0
 SPI_DEVICE = 0
 
 # Create a new SPI device object.
-spi = SPI.SpiDev(SPI_PORT, SPI_DEVICE)
-spi.open(SPI_PORT, SPI_DEVICE)
+spi = SPI.SpiDev()
+spi.open(bus=SPI_PORT, device=SPI_DEVICE)
 
 # Create TFT LCD display class.
 disp = ST7735.ST7735(
-    port=0,
-    cs=GPIO.OUT,
-    dc=GPIO.OUT,
-    rst=GPIO.OUT,
+    port=SPI_PORT,
+    cs=GPIO.get_platform_gpio().pin(8),
+    dc=GPIO.get_platform_gpio().pin(25),
+    rst=GPIO.get_platform_gpio().pin(24),
     width=128,
     height=160,
     spi=spi)
@@ -37,6 +37,7 @@ disp.begin()
 
 # Clear display.
 disp.clear()
+
 
 # Create blank image for drawing.
 width = disp.width
