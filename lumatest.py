@@ -6,7 +6,7 @@ import RPi.GPIO as GPIO
 from PIL import ImageFont
 from luma.core.interface.serial import spi
 from luma.core.render import canvas
-from luma.oled.device import st7789v
+from luma.oled.device import st7789
 
 # Set up GPIO mode
 GPIO.setmode(GPIO.BCM)
@@ -19,7 +19,7 @@ GPIO.setup(17, GPIO.OUT)
 serial = spi(port=0, device=0, gpio_DC=22, gpio_RST=27, gpio=GPIO.BCM, bus_speed_hz=8000000)
 
 # Set up LCD screen
-device = st7789v(serial, width=240, height=320, rotate=0)
+device = st7789(serial, width=240, height=320, rotate=0)
 
 font24 = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMono.ttf', 24)
 
