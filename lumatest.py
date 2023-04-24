@@ -1,66 +1,50 @@
-#!/usr/bin/python
-# -*- coding:utf-8 -*-
+#!/usr/bin/env python
 
 import time
-import sys
+
+import Adafruit_GPIO.SPI as SPI
+import Adafruit_SSD1306
 
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
 
-import Adafruit_GPIO as GPIO
-import Adafruit_GPIO.SPI as SPI
-import ST7735 as ST7735
-
 # Raspberry Pi pin configuration:
-RST = 27
-DC = 25
+RST = None     # Not used for I2C interface
+DC = 23
 SPI_PORT = 0
 SPI_DEVICE = 0
 
-# Create a new SPI device object.
-spi = SPI.SpiDev(SPI_PORT, SPI_DEVICE)
-spi.openSPI(bus=SPI_PORT, device=SPI_DEVICE)
+# OLED display height and width in pixels
+DISP_WIDTH = 128
+DISP_HEIGHT = 32
 
+# Create OLED display class
+disp = Adafruit_SSD1306.SSD1306_128_32(rst=RST)
 
-# Create TFT LCD display class.
-disp = ST7735.ST7735(
-    port=0,
-    cs=0,
-    dc=24,
-    backlight=25,
-    rst=23,
-    rotation=0,
-    spi_speed_hz=4000000)
-
-# Initialize display.
+# Initialize OLED display
 disp.begin()
 
-# Clear display.
+# Clear display
 disp.clear()
+disp.display()
 
+# Create blank image for drawing
+image = Image.new('1', (DISP_WIDTH, DISP_HEIGHT))
 
-
-
-# Create blank image for drawing.
-width = disp.width
-height = disp.height
-image = Image.new('RGB', (width, height), (0, 0, 0))
-
-# Get drawing object to draw on image.
+# Get drawing object to draw on image
 draw = ImageDraw.Draw(image)
 
-# Draw a white background.
-draw.rectangle((0, 0, width, height), fill=(255, 255, 255))
+# Draw some text
+font = ImageFont.load_default()
+draw.text((0,0), "Hello World!", font=font, fill=255)
 
-# Draw a red cross.
-draw.line((0, 0, width, height), fill=(255, 0, 0))
-draw.line((0, height, width, 0), fill=(255, 0, 0))
+# Display image on OLED
+disp.image(image)
+disp.display()
 
-# Display image.
-disp.display(image)
+time.sleep(5.0)
 
-time.sleep(10.0)
-
-# Clear display.
+# Clear display
 disp.clear()
+disp.display()
