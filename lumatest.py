@@ -4,6 +4,7 @@ import time
 import spidev
 import RPi.GPIO as GPIO
 from PIL import Image
+GPIO.setwarnings(False)
 
 # ST7789V LCD display parameters
 WIDTH = 240
