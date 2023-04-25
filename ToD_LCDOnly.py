@@ -42,6 +42,12 @@ def get_question(ToD, rating):
     return question
 
 while True:
+    disp = LCD_2inch.LCD_2inch()
+    # Initialize library.
+    disp.Init()
+    # Clear display.
+    disp.clear()
+    
     text_start = "Starting truth or dare game..."
     
     image1 = Image.new("RGB", (disp.height, disp.width ), "WHITE")
