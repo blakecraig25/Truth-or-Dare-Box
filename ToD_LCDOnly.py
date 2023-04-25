@@ -22,7 +22,7 @@ bus = 0
 device = 0
 logging.basicConfig(level=logging.DEBUG)
 
-def image(text):
+def image(text, question_number):
     #disp = LCD_2inch.LCD_2inch(spi=SPI.SpiDev(bus, device),spi_freq=10000000,rst=RST,dc=DC,bl=BL)
     disp = LCD_2inch.LCD_2inch()
     # Initialize library.
@@ -33,6 +33,7 @@ def image(text):
     # Create blank image for drawing.
     image1 = Image.new("RGB", (disp.height, disp.width ), "WHITE")
     draw = ImageDraw.Draw(image1)
+    
 
     logging.info("draw text")
     Font1 = ImageFont.truetype("../Font/Font01.ttf",25)
@@ -73,6 +74,7 @@ def get_question(ToD, rating):
 while True:
     text_start = "Starting truth or dare game..."
     image(text_start)
+    time.sleep(3)
     text_q1 = "Please enter the desired game mode:\n't' for Truth\n'd' for Dare"
     # wait for T or D key to be pressed to select Truth or Dare
     image(text_q1)
