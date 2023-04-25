@@ -67,11 +67,13 @@ try:
     image1=image1.rotate(180)
     disp.ShowImage(image1)
     time.sleep(3)
-    logging.info("show image")
-    image = Image.open('../pic/LCD_2inch.jpg')
-    image = image.rotate(180)
-    disp.ShowImage(image)
-    time.sleep(3)
+
+    # logging.info("show image")
+    # image = Image.open('../pic/LCD_2inch.jpg')
+    # image = image.rotate(180)
+    # disp.ShowImage(image)
+    # time.sleep(3)
+
     disp.module_exit()
     logging.info("quit:")
 except IOError as e:
