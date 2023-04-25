@@ -66,42 +66,8 @@ def get_question(ToD, rating):
         question = questions_dict_truth['question']
     elif ToD == "D":
         response_dare = requests.get("https://api.truthordarebot.xyz/v1/dare?rating=" + rating)
-        questions_dict_dare = json.loads(response_dare.content.decode('utf-8'))
         question = questions_dict_dare['question']
     
-    return question
-
-while True:
-    text_start = "Starting truth or dare game..."
-    image(text_start)
-    time.sleep(3)
-    text_q1 = "Please enter the desired game mode:\n't' for Truth\n'd' for Dare"
-    # wait for T or D key to be pressed to select Truth or Dare
-
-    while True:
-        image(text_q1)
-        if keyboard.is_pressed('t'):
-            ToD = "T"
-            break
-        elif keyboard.is_pressed('d'):
-            ToD = "D"
-            break
-    
-    text_q2 = "Please enter the desired rating:\n'e' for PG\n'm' for PG13\n'h' for R"
-    # wait for PG, PG13, or R key to be pressed to select the rating
-    while True:
-        image(text_q2)
-        if keyboard.is_pressed('e'):
-            rating = "PG"
-            break
-        elif keyboard.is_pressed('m'):
-            rating = "PG13"
-            break
-        elif keyboard.is_pressed('h'):
-            rating = "R"
-            break
-
-    question = get_question(ToD, rating)
     if question:
         text_response = question + "\n\nWould you like to keep playing?\n Press 'y' to continue or 'n' to stop."
         image(text_response)
@@ -115,4 +81,3 @@ while True:
 
     # debounce delay to prevent multiple key presses
     time.sleep(0.1)
-
