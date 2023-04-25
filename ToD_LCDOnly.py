@@ -67,7 +67,6 @@ while True:
 
     logging.info("draw text")
     Font3 = ImageFont.truetype("../Font/Font02.ttf",32)
-    draw.rectangle([(0,65),(140,100)],fill = "WHITE")
     draw.text((5, 68), text_q1, fill = "BLACK",font=Font3)
     while True:
         if keyboard.is_pressed('t'):
