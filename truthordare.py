@@ -43,9 +43,6 @@ def image(text):
 
     draw.rectangle([(0,65),(140,100)],fill = "WHITE")
     draw.text((5, 68), text, fill = "BLACK",font=Font3)
-    draw.text((5, 160), '1234567890', fill = "GREEN",font=Font3)
-    text= u"Hello"
-    draw.text((5, 200),text, fill = "BLUE",font=Font3)
     image1=image1.rotate(180)
     disp.ShowImage(image1)
     time.sleep(3)
@@ -77,8 +74,9 @@ while True:
     text_q1 = "Please enter the desired game mode:\n't' for Truth\n'd' for Dare"
     # wait for T or D key to be pressed to select Truth or Dare
 
+    image(text_q1)
     while True:
-        image(text_q1)
+        
         if keyboard.is_pressed('t'):
             ToD = "T"
             break
@@ -88,8 +86,8 @@ while True:
     
     text_q2 = "Please enter the desired rating:\n'e' for PG\n'm' for PG13\n'h' for R"
     # wait for PG, PG13, or R key to be pressed to select the rating
+    image(text_q2)
     while True:
-        image(text_q2)
         if keyboard.is_pressed('e'):
             rating = "PG"
             break
@@ -103,8 +101,8 @@ while True:
     question = get_question(ToD, rating)
     if question:
         text_response = question + "\n\nWould you like to keep playing?\n Press 'y' to continue or 'n' to stop."
-        image(text_response)
-
+        
+    image(text_response)
     # wait for Y or N key to be pressed to continue
     while True:
         if keyboard.is_pressed('y'):
