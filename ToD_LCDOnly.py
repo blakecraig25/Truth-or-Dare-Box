@@ -61,6 +61,14 @@ while True:
     # wait for T or D key to be pressed to select Truth or Dare
     
     while True:
+        image1 = Image.new("RGB", (disp.height, disp.width ), "WHITE")
+        draw = ImageDraw.Draw(image1)
+
+        logging.info("draw text")
+        Font3 = ImageFont.truetype("../Font/Font02.ttf",32)
+        draw.rectangle([(0,65),(140,100)],fill = "WHITE")
+        draw.text((5, 68), text_q1, fill = "BLACK",font=Font3)
+
         if keyboard.is_pressed('t'):
             ToD = "T"
             break
@@ -72,6 +80,14 @@ while True:
     # wait for PG, PG13, or R key to be pressed to select the rating
     
     while True:
+        image1 = Image.new("RGB", (disp.height, disp.width ), "WHITE")
+        draw = ImageDraw.Draw(image1)
+
+        logging.info("draw text")
+        Font3 = ImageFont.truetype("../Font/Font02.ttf",32)
+        draw.rectangle([(0,65),(140,100)],fill = "WHITE")
+        draw.text((5, 68), text_q2, fill = "BLACK",font=Font3)
+
         if keyboard.is_pressed('e'):
             rating = "PG"
             break
@@ -85,7 +101,13 @@ while True:
     question = get_question(ToD, rating)
     if question:
         text_response = question + "\n\nWould you like to keep playing?\n Press 'y' to continue or 'n' to stop."
-        print(text_response)
+        image1 = Image.new("RGB", (disp.height, disp.width ), "WHITE")
+        draw = ImageDraw.Draw(image1)
+
+        logging.info("draw text")
+        Font3 = ImageFont.truetype("../Font/Font02.ttf",32)
+        draw.rectangle([(0,65),(140,100)],fill = "WHITE")
+        draw.text((5, 68), text_response, fill = "BLACK",font=Font3)
 
     # wait for Y or N key to be pressed to continue
     while True:
