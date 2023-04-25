@@ -1,70 +1,22 @@
-import requests
-import json
+# import required libraries
 import time
-import keyboard
-import RPi.GPIO as GPIO
+from PIL import Image
+from PIL import ImageDraw
 from PIL import ImageFont
-from luma.core.interface.serial import spi
-from luma.core.render import canvas
-from luma.oled.device import st7789
+from st7789v import ST7789V
 
-# Set up GPIO mode
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(25, GPIO.OUT)
-GPIO.setup(22, GPIO.OUT)
-GPIO.setup(27, GPIO.OUT)
-GPIO.setup(17, GPIO.OUT)
+# create an instance of the ST7789V display with the correct settings for your display
+display = ST7789V(port=0, cs=0, dc=9, backlight=None, rotation=0, spi_speed_hz=80 * 1000 * 1000)
 
-# Set up SPI interface
-serial = spi(port=0, device=0, gpio_DC=22, gpio_RST=27, gpio=GPIO.BCM, bus_speed_hz=8000000)
+# create a new PIL image and a drawing object
+image = Image.new("RGB", (display.width, display.height), "white")
+draw = ImageDraw.Draw(image)
 
-# Set up LCD screen
-device = st7789(serial, width=240, height=320, rotate=0)
+# choose a font (you can download a font file and place it in your project directory)
+font = ImageFont.load_default()
 
-font24 = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMono.ttf', 24)
+# draw some text on the image
+draw.text((10, 10), "Hello, world!", font=font, fill=(0, 0, 0))
 
-def get_question(ToD, rating):
-    if ToD != "T" and ToD != "D":
-        print("Error: Invalid Input for Truth Or Dare.")
-        return
-    if rating != "PG" and rating != "PG13" and rating != "R":
-        print("Error: Invalid rating.")
-        return
-
-    if ToD == "T":
-        response_truth = requests.get("https://api.truthordarebot.xyz/v1/truth?rating=" + rating)
-        questions_dict_truth = json.loads(response_truth.content.decode('utf-8'))
-        question = questions_dict_truth['question']
-    elif ToD == "D":
-        response_dare = requests.get("https://api.truthordarebot.xyz/v1/dare?rating=" + rating)
-        questions_dict_dare = json.loads(response_dare.content.decode('utf-8'))
-        question = questions_dict_dare['question']
-    
-    return question
-
-while True:
-    # Display screen one
-    with canvas(device) as draw:
-        draw.text((10, 10), "Starting truth or dare game...", font=font24, fill='black')
-        draw.text((10, 40), "Please enter the desired game mode:", font=font24, fill='black')
-        draw.text((10, 70), "'t' for Truth", font=font24, fill='black')
-        draw.text((10, 100), "'d' for Dare", font=font24, fill='black')
-        time.sleep(2)
-    # wait for T or D key to be pressed to select Truth or Dare
-    while True:
-        if keyboard.is_pressed('t'):
-            ToD = "T"
-            break
-        elif keyboard.is_pressed('d'):
-            ToD = "D"
-            break
-    
-    # Display screen two
-    with canvas(device) as draw:
-        draw.rectangle((0, 0, device.width, device.height), fill='white')
-        draw.text((10, 10), "Please enter the desired rating:", font=font24, fill='black')
-        draw.text((10, 40), "'e' for PG", font=font24, fill='black')
-        draw.text((10, 70), "'m' for PG13", font=font24, fill='black')
-        draw.text((10, 100), "'h' for R", font=font24, fill='black')
-        time.sleep(2)
-    # wait for PG, PG13, or R key to be pressed
+# display the image on the screen
+display.display(image)
