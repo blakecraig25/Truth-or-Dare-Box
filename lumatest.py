@@ -1,12 +1,11 @@
-# import required libraries
 import time
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
-import st7789v
+from st7789v import ST7789V
 
 # create an instance of the ST7789V display with the correct settings for your display
-display = st7789v(port=0, cs=0, dc=9, backlight=None, rotation=0, spi_speed_hz=80 * 1000 * 1000)
+display = ST7789V(port=0, cs=0, dc=9, backlight=None, rotation=0, spi_speed_hz=80 * 1000 * 1000)
 
 # create a new PIL image and a drawing object
 image = Image.new("RGB", (display.width, display.height), "white")
