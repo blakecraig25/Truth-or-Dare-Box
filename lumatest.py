@@ -64,7 +64,6 @@ try:
     draw.text((5, 200),text, fill = "BLUE",font=Font3)
     image1=image1.rotate(180)
     disp.ShowImage(image1)
-    time.sleep(3)
 
     # logging.info("show image")
     # image = Image.open('../pic/LCD_2inch.jpg')
@@ -106,7 +105,6 @@ try:
     draw.text((5, 200), 'Did this work?', fill = "BLUE",font=Font3)
     image1=image1.rotate(180)
     disp.ShowImage(image1)
-    time.sleep(3)
 
     disp.module_exit()
     logging.info("quit:")
