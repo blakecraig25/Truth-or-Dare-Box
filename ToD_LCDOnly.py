@@ -22,7 +22,7 @@ bus = 0
 device = 0
 logging.basicConfig(level=logging.DEBUG)
 
-def image(text, question_number):
+def image(text):
     #disp = LCD_2inch.LCD_2inch(spi=SPI.SpiDev(bus, device),spi_freq=10000000,rst=RST,dc=DC,bl=BL)
     disp = LCD_2inch.LCD_2inch()
     # Initialize library.
