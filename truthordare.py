@@ -45,7 +45,7 @@ def image(text):
     draw.text((5, 68), text, fill = "BLACK",font=Font3)
     image1=image1.rotate(180)
     disp.ShowImage(image1)
-    time.sleep(3)
+    return
 
 
 def get_question(ToD, rating):
