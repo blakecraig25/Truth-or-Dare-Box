@@ -6,7 +6,7 @@ import RPi.GPIO as GPIO
 from PIL import ImageFont
 from luma.core.interface.serial import spi
 from luma.core.render import canvas
-from luma.oled.device import st7789v
+from luma.oled.device import st7789
 
 # Set up GPIO mode
 GPIO.setmode(GPIO.BCM)
@@ -19,7 +19,7 @@ GPIO.setup(17, GPIO.OUT)
 serial = spi(port=0, device=0, gpio_DC=22, gpio_RST=27, gpio=GPIO.BCM, bus_speed_hz=8000000)
 
 # Set up LCD screen
-device = st7789v(serial, width=240, height=320, rotate=0)
+device = st7789(serial, width=240, height=320, rotate=0)
 
 font24 = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMono.ttf', 24)
 
@@ -68,34 +68,3 @@ while True:
         draw.text((10, 100), "'h' for R", font=font24, fill='black')
         time.sleep(2)
     # wait for PG, PG13, or R key to be pressed
-    while True:
-        if keyboard.is_pressed('e'):
-            rating = "PG"
-            break
-        elif keyboard.is_pressed('m'):
-            rating = "PG13"
-            break
-        elif keyboard.is_pressed('h'):
-            rating = "R"
-            break
-
-    question = get_question(ToD, rating)
-    if question:
-        print(question)
-
-    # Display screen three
-    with canvas(device) as draw:
-        draw.rectangle((0, 0, device.width, device.height), fill='white')
-        draw.text((10, 10), question, font=font24, fill='black')
-        draw.text((10, 40), "Would you like to keep playing?", font=font24, fill='black')
-        draw.text((10, 70), "Press 'y' to continue or 'n' to stop.", font=font24, fill='black')
-        time.sleep(2)
-    # wait for Y or N key to be pressed to continue
-    while True:
-        if keyboard.is_pressed('y'):
-            break
-        elif keyboard.is_pressed('n'):
-            break
-
-    # debounce delay to prevent multiple key presses
-    time.sleep(0.2)
