@@ -58,7 +58,7 @@ try:
     Font3 = ImageFont.truetype("../Font/Font02.ttf",32)
 
     draw.rectangle([(0,65),(140,100)],fill = "WHITE")
-    draw.text((5, 68), 'This is the way', fill = "BLACK",font=Font1)
+    draw.text((5, 68), 'Give me a truth or dare\nI want one now', fill = "BLACK",font=Font1)
     draw.rectangle([(0,115),(190,160)],fill = "RED")
     draw.text((5, 118), 'WaveShare', fill = "WHITE",font=Font2)
     draw.text((5, 160), '1234567890', fill = "GREEN",font=Font3)
