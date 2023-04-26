@@ -102,15 +102,16 @@ def get_question(ToD, choice):
     
     return question
 
+ToD = " "
+rate = " "
+again = " "
+count = 0
 while True:
     text_start = "Starting truth or dare game..."
     
     text_q1 = "Please enter the desired game mode:\n't' for Truth\n'd' for Dare"
     # wait for T or D key to be pressed to select Truth or Dare
-    ToD = " "
-    rate = " "
-    again = " "
-    count = 0
+    
     image(text_start, ToD, rate, again, count)
     time.sleep(3)
     print(ToD, rate, again, count)
