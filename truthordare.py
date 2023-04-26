@@ -46,7 +46,7 @@ def image(text, count, variable):
     Font3 = ImageFont.truetype("../Font/Font02.ttf",32)
 
     draw.rectangle([(0,65),(140,100)],fill = "WHITE")
-    draw.text((5, 68), text, fill = "BLACK",font=Font3)
+    draw.text((5, 5), text, fill = "BLACK",font=Font3)
     image1=image1.rotate(180)
     disp.ShowImage(image1)
 
@@ -109,20 +109,20 @@ def get_question(ToD, choice):
     return question
 
 while True:
-    text_start = "Starting truth or dare game..."
+    text_start = "Starting truth or dare game\n..."
     count = 0
     q0 = image(text_start, count, ' ')
     time.sleep(3)
     print(q0)
     
     # wait for T or D key to be pressed to select Truth or Dare
-    text_q1 = "Please enter the desired game mode:\n't' for Truth\n'd' for Dare"
+    text_q1 = "Please enter the desired \ngame mode:\n\n't' for Truth\n'd' for Dare"
     count = 1
     q1 = image(text_q1, count, ToD)
     print(q1)
     
     # wait for PG, PG13, or R key to be pressed to select the rating
-    text_q2 = "Please enter the desired rating:\n'e' for PG\n'm' for PG13\n'h' for R"
+    text_q2 = "Please enter the desired \nrating:\n'e' for PG\n'm' for PG13\n'h' for R"
     count = 2
     q2 = image(text_q2, count, rate)
     print(q2)
@@ -136,7 +136,7 @@ while True:
 
     # wait for Y or N key to be pressed to continue
     count = 4
-    text_response = "Would you like to keep playing?\n Press 'y' to continue or 'n' to stop."
+    text_response = "Would you like to keep \nplaying?\n\nPress 'y' to continue or 'n' to stop."
     q4 = image(text_response, count, again)
     print(q4)
     while True:
