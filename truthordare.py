@@ -66,11 +66,9 @@ def image(text, count, variable):
         while True:
             if button1 == GPIO.LOW:
                 variable = "T"
-                time.sleep(.2)
                 return(variable)
             elif button2 == GPIO.LOW:
                 variable = "D"
-                time.sleep(.2)
                 return(variable)
     if count == 2:
         while True:
