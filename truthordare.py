@@ -103,7 +103,7 @@ while True:
     rate = " "
     again = " "
     count = 0
-    image(text_start)
+    image(text_start, ToD, rate, again, count)
     time.sleep(3)
 
     count = 1
