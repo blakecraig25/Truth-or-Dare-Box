@@ -122,8 +122,11 @@ while True:
     
     count = 3
     question = get_question(ToD, rate)
-    text_response = question + "\n\nWould you like to keep playing?\n Press 'y' to continue or 'n' to stop."
+    text_question = question
+    image(text_question, ToD, rate, again, count)
 
+    text_response = "Would you like to keep playing?\n Press 'y' to continue or 'n' to stop."
+    
     count = 4 
     image(text_response, ToD, rate, again, count)
     # wait for Y or N key to be pressed to continue
