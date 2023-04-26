@@ -27,7 +27,7 @@ disp = LCD_2inch.LCD_2inch()
 # Initialize library.
 disp.Init()
 
-def image(text):
+def image(text, truthordare, rating, repeat, count):
     # Clear display.
     disp.clear()
 
@@ -37,15 +37,42 @@ def image(text):
     
 
     logging.info("draw text")
-    Font1 = ImageFont.truetype("../Font/Font01.ttf",25)
-    Font2 = ImageFont.truetype("../Font/Font01.ttf",35)
     Font3 = ImageFont.truetype("../Font/Font02.ttf",32)
 
     draw.rectangle([(0,65),(140,100)],fill = "WHITE")
     draw.text((5, 68), text, fill = "BLACK",font=Font3)
     image1=image1.rotate(180)
     disp.ShowImage(image1)
-    return
+
+    if count == 1:
+        while True:
+            if keyboard.is_pressed('t'):
+                truthordare = "T"
+                break
+                
+            elif keyboard.is_pressed('d'):
+                truthordare = "D"
+                break
+    if count == 2:
+        while True:
+            if keyboard.is_pressed('e'):
+                rating = "PG"
+                break
+            elif keyboard.is_pressed('m'):
+                rating = "PG13"
+                break
+            elif keyboard.is_pressed('h'):
+                rating = "R"
+                break
+    if count == 3:
+        while True:
+            if keyboard.is_pressed('y'):
+                break
+            elif keyboard.is_pressed('n'):
+                break
+    
+    return(text, truthordare, rating, repeat, count)
+
 
 
 def get_question(ToD, rating):
@@ -73,42 +100,25 @@ while True:
     time.sleep(3)
     text_q1 = "Please enter the desired game mode:\n't' for Truth\n'd' for Dare"
     # wait for T or D key to be pressed to select Truth or Dare
-
-    image(text_q1)
-    while True:
-        
-        if keyboard.is_pressed('t'):
-            ToD = "T"
-            break
-        elif keyboard.is_pressed('d'):
-            ToD = "D"
-            break
+    ToD = " "
+    rate = " "
+    again = " "
+    count = 1
+    image(text_q1, ToD, rate, again, count)
     
     text_q2 = "Please enter the desired rating:\n'e' for PG\n'm' for PG13\n'h' for R"
     # wait for PG, PG13, or R key to be pressed to select the rating
-    image(text_q2)
-    while True:
-        if keyboard.is_pressed('e'):
-            rating = "PG"
-            break
-        elif keyboard.is_pressed('m'):
-            rating = "PG13"
-            break
-        elif keyboard.is_pressed('h'):
-            rating = "R"
-            break
-
-    question = get_question(ToD, rating)
+    count = 2
+    image(text_q2, ToD, rate, again, count)
+    
+    question = get_question(ToD, rate)
     if question:
         text_response = question + "\n\nWould you like to keep playing?\n Press 'y' to continue or 'n' to stop."
-        
-    image(text_response)
+
+    count = 3 
+    image(text_response, ToD, rate, again, count)
     # wait for Y or N key to be pressed to continue
-    while True:
-        if keyboard.is_pressed('y'):
-            break
-        elif keyboard.is_pressed('n'):
-            break
+
 
     # debounce delay to prevent multiple key presses
     time.sleep(0.1)
