@@ -33,7 +33,8 @@ disp = LCD_2inch.LCD_2inch()
 # Initialize library.
 disp.Init()
 
-def image(text, truthordare, rating, repeat, count):
+def image(text, count, variable):
+    count += 1
     # Clear display.
     disp.clear()
 
@@ -52,40 +53,40 @@ def image(text, truthordare, rating, repeat, count):
 
     if count == 1:
         while True:
-            key_pressed1 = input("Put in value: ")
-            if key_pressed1 == 't':
-                truthordare = "T"
-                return(text, truthordare, rating, repeat, count)
+            variable = input("Put in value: ")
+            if variable == 't':
+                variable = "T"
+                return(variable)
                 
-            elif key_pressed1 == 'd':
-                truthordare = "D"
-                return(text, truthordare, rating, repeat, count)
+            elif variable == 'd':
+                variable = "D"
+                return(variable)
     if count == 2:
         while True:
-            key_pressed2 = input("Put in value: ")
-            if key_pressed2 == 'e':
-                rating = "PG"
-                return(text, truthordare, rating, repeat, count)
-            elif key_pressed2 == 'm':
-                rating = "PG13"
-                return(text, truthordare, rating, repeat, count)
-            elif key_pressed2 == 'h':
-                rating = "R"
-                return(text, truthordare, rating, repeat, count)
+            variable = input("Put in value: ")
+            if variable == 'e':
+                variable = "PG"
+                return(variable)
+            elif variable == 'm':
+                variable = "PG13"
+                return(variable)
+            elif variable == 'h':
+                variable = "R"
+                return(variable)
     if count == 3:
         while True:
-            key_pressed3 = input("Put in ""c"" to continue : ")
-            if key_pressed3 == 'c':
-                return(text, truthordare, rating, repeat, count)
+            variable = input("Put in ""c"" to continue : ")
+            if variable == 'c':
+                return(question)
     if count == 4:
         while True:
-            key_pressed4 = input("Put in value: ")
-            if key_pressed4 == 'y':
-                return(text, truthordare, rating, repeat, count)
-            elif key_pressed4 == 'n':
-                return(text, truthordare, rating, repeat, count)
+            variable = input("Put in value: ")
+            if variable == 'y':
+                return(variable)
+            elif variable == 'n':
+                return(variable)
     
-    return(text, truthordare, rating, repeat, count)
+    return(variable)
 
 
 
@@ -110,38 +111,41 @@ def get_question(ToD, choice):
 
 while True:
     text_start = "Starting truth or dare game..."
-    
-    text_q1 = "Please enter the desired game mode:\n't' for Truth\n'd' for Dare"
-    # wait for T or D key to be pressed to select Truth or Dare
-    
-    image(text_start, ToD, rate, again, count)
+    count = 0
+    q0 = image(text_start, count, ' ')
     time.sleep(3)
-    print(ToD, rate, again, count)
-
+    print(q0)
+    
+    # wait for T or D key to be pressed to select Truth or Dare
+    text_q1 = "Please enter the desired game mode:\n't' for Truth\n'd' for Dare"
     count = 1
-    image(text_q1, ToD, rate, again, count)
-    print(ToD, rate, again, count)
+    q1 = image(text_q1, count, ToD)
+    print(q1)
     
-    text_q2 = "Please enter the desired rating:\n'e' for PG\n'm' for PG13\n'h' for R"
     # wait for PG, PG13, or R key to be pressed to select the rating
+    text_q2 = "Please enter the desired rating:\n'e' for PG\n'm' for PG13\n'h' for R"
     count = 2
-    image(text_q2, ToD, rate, again, count)
-    print(ToD, rate, again, count)
+    q2 = image(text_q2, count, rate)
+    print(q2)
     
+    # print ToD response
     count = 3
-    question = get_question(ToD, rate)
-    text_question = str(question)
-    image(text_question, ToD, rate, again, count)
-    print(text_question, ToD, rate, again, count)
+    question = get_question(q1, q2)
+    if question:
+        r1 = image(question, count, ' ')
+        print(r1)
 
-    text_response = "Would you like to keep playing?\n Press 'y' to continue or 'n' to stop."
-    
-    count = 4 
-    image(text_response, ToD, rate, again, count)
-    print(ToD, rate, again, count)
     # wait for Y or N key to be pressed to continue
-
-
+    count = 4
+    text_response = "Would you like to keep playing?\n Press 'y' to continue or 'n' to stop."
+    q4 = image(text_response, count, again)
+    print(q4)
+    while True:
+        if q4 == 'y':
+            break
+        elif q4 == 'n':
+            break
+    
     # debounce delay to prevent multiple key presses
     time.sleep(0.1)
 
