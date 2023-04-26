@@ -122,7 +122,7 @@ while True:
     
     count = 3
     question = get_question(ToD, rate)
-    text_question = question
+    text_question = str(question)
     image(text_question, ToD, rate, again, count)
 
     text_response = "Would you like to keep playing?\n Press 'y' to continue or 'n' to stop."
