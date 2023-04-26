@@ -96,13 +96,16 @@ def get_question(ToD, rating):
 
 while True:
     text_start = "Starting truth or dare game..."
-    image(text_start)
-    time.sleep(3)
+    
     text_q1 = "Please enter the desired game mode:\n't' for Truth\n'd' for Dare"
     # wait for T or D key to be pressed to select Truth or Dare
     ToD = " "
     rate = " "
     again = " "
+    count = 0
+    image(text_start)
+    time.sleep(3)
+
     count = 1
     image(text_q1, ToD, rate, again, count)
     
