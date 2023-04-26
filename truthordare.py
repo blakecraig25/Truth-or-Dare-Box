@@ -45,16 +45,19 @@ def image(text, truthordare, rating, repeat, count):
     disp.ShowImage(image1)
 
     if count == 1:
+
         while True:
-            if keyboard.is_pressed('t'):
+            key_pressed1 = input("Put in value: ")
+            if key_pressed1 == 't':
                 truthordare = "T"
                 break
                 
-            elif keyboard.is_pressed('d'):
+            elif key_pressed1 == 'd':
                 truthordare = "D"
                 break
     if count == 2:
         while True:
+            key_pressed2 = input("Put in value: ")
             if keyboard.is_pressed('e'):
                 rating = "PG"
                 break
@@ -75,20 +78,20 @@ def image(text, truthordare, rating, repeat, count):
 
 
 
-def get_question(ToD, rating):
+def get_question(ToD, choice):
     if ToD != "T" and ToD != "D":
         print("Error: Invalid Input for Truth Or Dare.")
         return
-    if rating != "PG" and rating != "PG13" and rating != "R":
+    if choice != "PG" and choice != "PG13" and choice != "R":
         print("Error: Invalid rating.")
         return
 
     if ToD == "T":
-        response_truth = requests.get("https://api.truthordarebot.xyz/v1/truth?rating=" + rating)
+        response_truth = requests.get("https://api.truthordarebot.xyz/v1/truth?rating=" + choice)
         questions_dict_truth = json.loads(response_truth.content.decode('utf-8'))
         question = questions_dict_truth['question']
     elif ToD == "D":
-        response_dare = requests.get("https://api.truthordarebot.xyz/v1/dare?rating=" + rating)
+        response_dare = requests.get("https://api.truthordarebot.xyz/v1/dare?rating=" + choice)
         questions_dict_dare = json.loads(response_dare.content.decode('utf-8'))
         question = questions_dict_dare['question']
     
