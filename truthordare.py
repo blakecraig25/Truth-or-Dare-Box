@@ -58,20 +58,21 @@ def image(text, truthordare, rating, repeat, count):
     if count == 2:
         while True:
             key_pressed2 = input("Put in value: ")
-            if keyboard.is_pressed('e'):
+            if key_pressed2 == 'e':
                 rating = "PG"
                 break
-            elif keyboard.is_pressed('m'):
+            elif key_pressed2 == 'm':
                 rating = "PG13"
                 break
-            elif keyboard.is_pressed('h'):
+            elif key_pressed2 == 'h':
                 rating = "R"
                 break
     if count == 3:
         while True:
-            if keyboard.is_pressed('y'):
+            key_pressed3 = input("Put in value: ")
+            if key_pressed3 == 'y':
                 break
-            elif keyboard.is_pressed('n'):
+            elif key_pressed3 == 'n':
                 break
     
     return(text, truthordare, rating, repeat, count)
