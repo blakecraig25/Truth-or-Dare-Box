@@ -49,35 +49,35 @@ def image(text, truthordare, rating, repeat, count):
             key_pressed1 = input("Put in value: ")
             if key_pressed1 == 't':
                 truthordare = "T"
-                break
+                return(text, truthordare, rating, repeat, count)
                 
             elif key_pressed1 == 'd':
                 truthordare = "D"
-                break
+                return(text, truthordare, rating, repeat, count)
     if count == 2:
         while True:
             key_pressed2 = input("Put in value: ")
             if key_pressed2 == 'e':
                 rating = "PG"
-                break
+                return(text, truthordare, rating, repeat, count)
             elif key_pressed2 == 'm':
                 rating = "PG13"
-                break
+                return(text, truthordare, rating, repeat, count)
             elif key_pressed2 == 'h':
                 rating = "R"
-                break
+                return(text, truthordare, rating, repeat, count)
     if count == 3:
         while True:
             key_pressed3 = input("Put in ""c"" to continue : ")
             if key_pressed3 == 'c':
-                break
+                return(text, truthordare, rating, repeat, count)
     if count == 4:
         while True:
             key_pressed4 = input("Put in value: ")
             if key_pressed4 == 'y':
-                break
+                return(text, truthordare, rating, repeat, count)
             elif key_pressed4 == 'n':
-                break
+                return(text, truthordare, rating, repeat, count)
     
     return(text, truthordare, rating, repeat, count)
 
