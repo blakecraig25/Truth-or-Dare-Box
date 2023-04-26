@@ -136,7 +136,7 @@ while True:
 
     # wait for Y or N key to be pressed to continue
     count = 4
-    text_response = "Would you like to keep \nplaying?\n\nPress 'y' to continue or 'n' to stop."
+    text_response = "Would you like to keep \nplaying?\n\n'y' to continue\n'n' to stop."
     q4 = image(text_response, count, again)
     print(q4)
     while True:
