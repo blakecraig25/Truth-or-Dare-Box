@@ -45,7 +45,6 @@ def image(text, truthordare, rating, repeat, count):
     disp.ShowImage(image1)
 
     if count == 1:
-
         while True:
             key_pressed1 = input("Put in value: ")
             if key_pressed1 == 't':
@@ -68,6 +67,9 @@ def image(text, truthordare, rating, repeat, count):
                 rating = "R"
                 break
     if count == 3:
+        while True:
+            break
+    if count == 4:
         while True:
             key_pressed3 = input("Put in value: ")
             if key_pressed3 == 'y':
@@ -118,11 +120,11 @@ while True:
     count = 2
     image(text_q2, ToD, rate, again, count)
     
+    count = 3
     question = get_question(ToD, rate)
-    if question:
-        text_response = question + "\n\nWould you like to keep playing?\n Press 'y' to continue or 'n' to stop."
+    text_response = question + "\n\nWould you like to keep playing?\n Press 'y' to continue or 'n' to stop."
 
-    count = 3 
+    count = 4 
     image(text_response, ToD, rate, again, count)
     # wait for Y or N key to be pressed to continue
 
