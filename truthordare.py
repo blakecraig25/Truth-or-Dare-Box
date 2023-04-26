@@ -113,24 +113,29 @@ while True:
     count = 0
     image(text_start, ToD, rate, again, count)
     time.sleep(3)
+    print(ToD, rate, again, count)
 
     count = 1
     image(text_q1, ToD, rate, again, count)
+    print(ToD, rate, again, count)
     
     text_q2 = "Please enter the desired rating:\n'e' for PG\n'm' for PG13\n'h' for R"
     # wait for PG, PG13, or R key to be pressed to select the rating
     count = 2
     image(text_q2, ToD, rate, again, count)
+    print(ToD, rate, again, count)
     
     count = 3
     question = get_question(ToD, rate)
     text_question = str(question)
     image(text_question, ToD, rate, again, count)
+    print(text_question, ToD, rate, again, count)
 
     text_response = "Would you like to keep playing?\n Press 'y' to continue or 'n' to stop."
     
     count = 4 
     image(text_response, ToD, rate, again, count)
+    print(ToD, rate, again, count)
     # wait for Y or N key to be pressed to continue
 
 
