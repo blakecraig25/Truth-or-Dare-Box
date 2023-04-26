@@ -30,7 +30,7 @@ GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 button1 = GPIO.input(4)
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 button2 = GPIO.input(23)
-GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 button3 = GPIO.input(26)
 
 
