@@ -22,6 +22,12 @@ bus = 0
 device = 0
 logging.basicConfig(level=logging.DEBUG)
 
+#initial values:
+ToD = " "
+rate = " "
+again = " "
+count = 0
+
 #disp = LCD_2inch.LCD_2inch(spi=SPI.SpiDev(bus, device),spi_freq=10000000,rst=RST,dc=DC,bl=BL)
 disp = LCD_2inch.LCD_2inch()
 # Initialize library.
@@ -102,10 +108,6 @@ def get_question(ToD, choice):
     
     return question
 
-ToD = " "
-rate = " "
-again = " "
-count = 0
 while True:
     text_start = "Starting truth or dare game..."
     
