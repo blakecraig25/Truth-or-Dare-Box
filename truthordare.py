@@ -68,13 +68,15 @@ def image(text, truthordare, rating, repeat, count):
                 break
     if count == 3:
         while True:
-            break
+            key_pressed3 = input("Put in ""c"" to continue : ")
+            if key_pressed3 == 'c':
+                break
     if count == 4:
         while True:
-            key_pressed3 = input("Put in value: ")
-            if key_pressed3 == 'y':
+            key_pressed4 = input("Put in value: ")
+            if key_pressed4 == 'y':
                 break
-            elif key_pressed3 == 'n':
+            elif key_pressed4 == 'n':
                 break
     
     return(text, truthordare, rating, repeat, count)
