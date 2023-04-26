@@ -3,6 +3,8 @@ import requests
 import json
 import time
 import keyboard
+import RPi.GPIO as GPIO
+
 
 #Imports from LCD
 import os
@@ -21,6 +23,16 @@ BL = 18
 bus = 0
 device = 0
 logging.basicConfig(level=logging.DEBUG)
+
+# Button initialization:
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+button1 = GPIO.input(4)
+GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+button2 = GPIO.input(23)
+GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+button3 = GPIO.input(26)
+
 
 #initial values:
 ToD = " "
@@ -52,37 +64,41 @@ def image(text, count, variable):
 
     if count == 1:
         while True:
-            variable = input("Put in value: ")
-            if variable == 't':
+            if button1 == GPIO.LOW:
                 variable = "T"
+                time.sleep(.2)
                 return(variable)
-                
-            elif variable == 'd':
+            elif button2 == GPIO.LOW:
                 variable = "D"
+                time.sleep(.2)
                 return(variable)
     if count == 2:
         while True:
-            variable = input("Put in value: ")
-            if variable == 'e':
+            if button1 == GPIO.LOW:
                 variable = "PG"
+                time.sleep(.2)
                 return(variable)
-            elif variable == 'm':
+            elif button2 == GPIO.LOW:
                 variable = "PG13"
+                time.sleep(.2)
                 return(variable)
-            elif variable == 'h':
+            elif button3 == GPIO.LOW:
                 variable = "R"
+                time.sleep(.2)
                 return(variable)
     if count == 3:
         while True:
-            variable = input("Put in ""c"" to continue : ")
-            if variable == 'c':
+            print(question)
+            if button1 == GPIO.LOW:
+                time.sleep(.2)
                 return(question)
     if count == 4:
         while True:
-            variable = input("Put in value: ")
-            if variable == 'y':
+            if button1 == GPIO.LOW:
+                variable = 'y'
                 return(variable)
-            elif variable == 'n':
+            elif button2 == GPIO.LOW:
+                variable = 'n'
                 return(variable)
     
     return(variable)
@@ -132,7 +148,6 @@ while True:
     question = get_question(q1, q2)
     if question:
         r1 = image(question, count, ' ')
-        print(r1)
 
     # wait for Y or N key to be pressed to continue
     count = 4
