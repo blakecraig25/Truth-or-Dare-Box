@@ -34,7 +34,6 @@ disp = LCD_2inch.LCD_2inch()
 disp.Init()
 
 def image(text, count, variable):
-    count += 1
     # Clear display.
     disp.clear()
 
