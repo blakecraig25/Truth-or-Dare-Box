@@ -167,7 +167,7 @@ while True:
         
     question_r = question_nl + "\n\nPress Button 1 to\ncontinue."
     if question:
-        r1 = image(question, count, ' ')
+        r1 = image(question_r, count, ' ')
     x = 1
 
     # wait for Y or N key to be pressed to continue
