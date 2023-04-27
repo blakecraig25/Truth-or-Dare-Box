@@ -162,7 +162,8 @@ while True:
         if q4 == 'y':
             break
     if q4 == 'n':
-        quit()
+        disp.clear()
+        raise SystemExit
     
     # debounce delay to prevent multiple key presses
     time.sleep(0.1)
