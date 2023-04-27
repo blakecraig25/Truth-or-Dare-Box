@@ -161,7 +161,7 @@ while True:
         if q4 == 'y':
             break
     if q4 == 'n':
-        break
+        quit()
     
     # debounce delay to prevent multiple key presses
     time.sleep(0.1)
