@@ -134,13 +134,13 @@ while True:
     print(q0)
     
     # wait for T or D key to be pressed to select Truth or Dare
-    text_q1 = "Please enter the desired \ngame mode:\n\n't' for Truth\n'd' for Dare"
+    text_q1 = "Please enter the desired \ngame mode:\n\nButton 1 for Truth\nButton 2 for Dare"
     count = 1
     q1 = image(text_q1, count, ToD)
     print(q1)
     
     # wait for PG, PG13, or R key to be pressed to select the rating
-    text_q2 = "Please enter the desired \nrating:\n'e' for PG\n'm' for PG13\n'h' for R"
+    text_q2 = "Please enter the desired \nrating:\nButton 1 for PG\nButton 2 for PG13\nButton 3 for R"
     count = 2
     q2 = image(text_q2, count, rate)
     print(q2)
@@ -148,6 +148,8 @@ while True:
     # print ToD response
     count = 3
     question = get_question(q1, q2)
+    
+        
     question = question + "\n\nPress Button 1 to\ncontinue."
     if question:
         r1 = image(question, count, ' ')
@@ -155,7 +157,7 @@ while True:
 
     # wait for Y or N key to be pressed to continue
     count = 4
-    text_response = "Would you like to keep \nplaying?\n\n'y' to continue\n'n' to stop."
+    text_response = "Would you like to keep \nplaying?\n\nButton 1 to continue\nButton 2 to stop."
     q4 = image(text_response, count, again)
     print(q4)
     if q4 == 'y':
