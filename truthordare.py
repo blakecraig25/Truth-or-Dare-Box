@@ -89,8 +89,8 @@ def image(text, count, variable):
                 time.sleep(.2)
                 return(variable)
     if count == 3:
+        print(question)
         while True:
-            print(question)
             if GPIO.input(4) == False:
                 time.sleep(.2)
                 return(question)
@@ -150,6 +150,7 @@ while True:
     question = get_question(q1, q2)
     if question:
         r1 = image(question, count, ' ')
+    x = 1
 
     # wait for Y or N key to be pressed to continue
     count = 4
