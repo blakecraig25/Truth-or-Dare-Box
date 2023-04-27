@@ -93,7 +93,7 @@ def image(text, count, variable):
         while True:
             if GPIO.input(4) == False:
                 time.sleep(.2)
-                return(question + "\n\nPress Button 1 to\ncontinue.")
+                return(question)
     if count == 4:
         while True:
             if GPIO.input(4) == False:
@@ -148,6 +148,7 @@ while True:
     # print ToD response
     count = 3
     question = get_question(q1, q2)
+    question = question + "\n\nPress Button 1 to\ncontinue."
     if question:
         r1 = image(question, count, ' ')
     x = 1
