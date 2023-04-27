@@ -27,11 +27,11 @@ logging.basicConfig(level=logging.DEBUG)
 # Button initialization:
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-button1 = GPIO.input(4)
+
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-button2 = GPIO.input(23)
+
 GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-button3 = GPIO.input(26)
+
 
 
 #initial values:
@@ -64,42 +64,42 @@ def image(text, count, variable):
 
     if count == 1:
         while True:
-            if button1 == GPIO.LOW:
+            if GPIO.input(4) == False:
                 print("Button 1T is pressed")
                 variable = "T"
                 time.sleep(.2)
                 return(variable)
-            elif button2 == GPIO.LOW:
+            elif GPIO.input(23) == False:
                 print("Button 2D is pressed")
                 variable = "D"
                 time.sleep(.2)
                 return(variable)
     if count == 2:
         while True:
-            if button1 == GPIO.LOW:
+            if GPIO.input(4) == False:
                 variable = "PG"
                 time.sleep(.2)
                 return(variable)
-            elif button2 == GPIO.LOW:
+            elif GPIO.input(23) == False:
                 variable = "PG13"
                 time.sleep(.2)
                 return(variable)
-            elif button3 == GPIO.LOW:
+            elif GPIO.input(26) == False:
                 variable = "R"
                 time.sleep(.2)
                 return(variable)
     if count == 3:
         while True:
             print(question)
-            if button1 == GPIO.LOW:
+            if GPIO.input(4) == False:
                 time.sleep(.2)
                 return(question)
     if count == 4:
         while True:
-            if button1 == GPIO.LOW:
+            if GPIO.input(4) == False:
                 variable = 'y'
                 return(variable)
-            elif button2 == GPIO.LOW:
+            elif GPIO.input(23) == False:
                 variable = 'n'
                 return(variable)
     
