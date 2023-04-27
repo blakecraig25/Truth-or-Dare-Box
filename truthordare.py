@@ -158,9 +158,8 @@ while True:
     text_response = "Would you like to keep \nplaying?\n\n'y' to continue\n'n' to stop."
     q4 = image(text_response, count, again)
     print(q4)
-    while True:
-        if q4 == 'y':
-            break
+    if q4 == 'y':
+        continue
     if q4 == 'n':
         disp.clear()
         break
