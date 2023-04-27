@@ -163,8 +163,6 @@ while True:
             break
     if q4 == 'n':
         disp.clear()
-        raise SystemExit
-    
-    # debounce delay to prevent multiple key presses
-    time.sleep(0.1)
+        break
+print("We are done.")
 
