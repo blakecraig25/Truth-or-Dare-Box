@@ -45,6 +45,21 @@ disp = LCD_2inch.LCD_2inch()
 # Initialize library.
 disp.Init()
 
+def add_newlines(string):
+    for i in range(len(string)):
+        if i == 0:
+            i = 1
+        if i%29 == 0:
+            j = 0
+            while (j <= 29):
+                if string[i - j] == " ":
+                    string = string[:i-j] + '\n' + string[i-j+1:]
+                    break
+                j += 1
+            continue
+            
+    return string
+
 def image(text, count, variable):
     # Clear display.
     disp.clear()
@@ -148,9 +163,9 @@ while True:
     # print ToD response
     count = 3
     question = get_question(q1, q2)
-    
+    question_nl = add_newlines(question)
         
-    question = question + "\n\nPress Button 1 to\ncontinue."
+    question_r = question_nl + "\n\nPress Button 1 to\ncontinue."
     if question:
         r1 = image(question, count, ' ')
     x = 1
