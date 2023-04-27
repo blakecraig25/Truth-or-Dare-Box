@@ -74,7 +74,6 @@ def image(text, count, variable):
                 variable = "D"
                 time.sleep(.2)
                 return(variable)
-        
     if count == 2:
         while True:
             if button1 == GPIO.LOW:
