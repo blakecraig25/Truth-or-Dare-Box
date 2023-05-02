@@ -5,6 +5,11 @@
   The very fun and simple game that we all have played as kids, and even some now. Using a simple 3 button system, this game will allow you to explore many truths or dares of various ratings. The Truth Or Dare Box is adapted from the Discord [Truth Or Dare Bot](https://discord.gg/truth-or-dare-community-721108820339851285) and its [API](https://docs.truthordarebot.xyz/api-docs).
 
 ### Creator Statement:
+  When thinking of a project with no utility, primarily for the fun of thought, I instantly thought of a game. I wanted to come up with a game that could fit the party scene and be played over and over again without getting bored. I didn’t want to include a complex game that could potentially take forever or be too difficult to understand. Therefore, I decided on the game truth or dare. This is something simple to set up, but very enjoyable with a group of friends.
+  
+   When coming up with the Truth or Dare Box game, challenges surfaced that I had no idea about. I didn’t know how to use an API or an LCD to start out, so that would be my major learning objective for this assignment. I chose to use an API instead of importing a list or making one myself due to its complex storage of ideas and its already-reviewed platform. This API is also used in the website’s discord channel that allows you to play the game in a virtual setting as well. 
+  
+  This is a game, so it is important for it to look like one. The design was extremely important to me. Having something that looks like a classic box would bring out the simplicity of the game, like an arcade board, or a joystick controller. This box became something that I strove to make semi-portable and physically appealing. Using the Waveshare LCD allowed me to display more text than the current LCDs stored on site. It is small and effective and works well with the raspberry pi controls. It acts as a mini-monitor without the touch aspect or the two-lined LCD Display. Going small was definitely the move. I have a love for handheld games, and this could definitely fall under that category.
 
 ### Resources Used:
 1. Raspberry Pi 3
