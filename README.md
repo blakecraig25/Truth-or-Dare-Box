@@ -2,7 +2,7 @@
 ###### Blake Craig: Physical Computing -- No Utility
 
 ### What is the Truth Or Dare Box?
-  The very fun and simple game that we all have played as kids, and even some now. Using a simple 3 button system, this game will allow you to explore many truths or dares of various ratings. The Truth Or Dare Box is adapted from the Discord [Truth Or Dare Bot](https://discord.gg/truth-or-dare-community-721108820339851285) and it's [API](https://docs.truthordarebot.xyz/api-docs).
+  The very fun and simple game that we all have played as kids, and even some now. Using a simple 3 button system, this game will allow you to explore many truths or dares of various ratings. The Truth Or Dare Box is adapted from the Discord [Truth Or Dare Bot](https://discord.gg/truth-or-dare-community-721108820339851285) and its [API](https://docs.truthordarebot.xyz/api-docs).
 
 ### Creator Statement:
 
@@ -14,6 +14,11 @@
 5. Wooden Box for storage
 6. Power Cord for Raspberry Pi 3 (5.1 V micro USB power supply)
 
+### Rough Outline:
+[Truth or Dare Pitch Slides](https://docs.google.com/presentation/d/1FzBwE5TaG55Q_4KGaa2dDfBRiit9njIaPZ8VvBIQmys/edit?usp=sharing)
+   ![image](https://user-images.githubusercontent.com/112400887/235695310-5b562ccc-f879-402d-924a-b8895f6176c0.png)
+  
+
 ### Code:
  Description: | Code: | Instruction:
  --- | --- | --- 
@@ -23,5 +28,11 @@
  This is the entire code for the complete system. This code utilizes buttons. | [Link to Truth Or Dare Game: With Buttons](https://github.com/blakecraig25/Truth-or-Dare-Box/blob/main/truthordare.py) | This code will allow the user to press button 1, 2, or 3. Be careful, there are specific GPIO Pins using the BCM layout. These buttons are just attached to the GPIOs and ground, no need for a breadboard. I am using the internal resistors of the Raspberry Pi 3 instead of applying them myself. The output should result in screen changes to the next question. Test to make sure it does that. In addition, the terminal will display the values pressed and the question itself, in the event the LCD becomes disconnected. Refer to that to confim what users may have guessed.
  
 ### Useful Links for this project:
+- [DevLogs](https://docs.google.com/document/d/1LjeJ5W5CIBxbFlulhDBlaNdNTP2VWx7RZiV6apDHc5M/edit?usp=sharing)
+- [GitHub TruthorDare Repo](https://github.com/blakecraig25/Truth-or-Dare-Box)
+- [Waveshare Documentation](https://www.waveshare.com/wiki/2inch_LCD_Module)
+- []()
 
 ### Similar Projects:
+- [You Have Been Blinded and Thrown in a Dungeon](https://www.jeffreythompson.org/projects/you-have-been-blinded-and-thrown-in-a-dungeon.php)
+- [Mini Arcade Machine](https://github.com/obernardovieira/Mini-Arcade-Machine)
