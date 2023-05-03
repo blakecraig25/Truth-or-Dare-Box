@@ -36,6 +36,7 @@
 - [DevLogs](https://docs.google.com/document/d/1LjeJ5W5CIBxbFlulhDBlaNdNTP2VWx7RZiV6apDHc5M/edit?usp=sharing)
 - [GitHub TruthorDare Repo](https://github.com/blakecraig25/Truth-or-Dare-Box)
 - [Waveshare Documentation](https://www.waveshare.com/wiki/2inch_LCD_Module)
+- [Box Apparatus](https://en.makercase.com/#/basicbox)
 
 ### Similar Projects:
 - [You Have Been Blinded and Thrown in a Dungeon](https://www.jeffreythompson.org/projects/you-have-been-blinded-and-thrown-in-a-dungeon.php)
