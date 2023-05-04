@@ -32,6 +32,9 @@
  This code tests the API and the LCD. I would recommend testing the first two rows before testing this. I found that testing one part at a time was significantly faster. | [Link to Truth Or Dare Game: No Button](https://github.com/blakecraig25/Truth-or-Dare-Box/blob/main/ToD_LCDOnly.py) | This code is just like the instruction for the API. You can follow the instructions from the terminal and hopefully it displays the LCD responses. The questions may go out the right end of the LCD. Don't worry, I didn't implement a code to keep the entire question within the LCD screen. It is just a test. Feel free to copy the code from the complete code if you want to run LCD only.
  This is the entire code for the complete system. This code utilizes buttons. | [Link to Truth Or Dare Game: With Buttons](https://github.com/blakecraig25/Truth-or-Dare-Box/blob/main/truthordare.py) | This code will allow the user to press button 1, 2, or 3. Be careful, there are specific GPIO Pins using the BCM layout. These buttons are just attached to the GPIOs and ground, no need for a breadboard. I am using the internal resistors of the Raspberry Pi 3 instead of applying them myself. The output should result in screen changes to the next question. Test to make sure it does that. In addition, the terminal will display the values pressed and the question itself, in the event the LCD becomes disconnected. Refer to that to confim what users may have guessed.
  
+### Video:
+[![Truth or Dare Box](https://i9.ytimg.com/vi/NiKEBlZyoCc/mqdefault.jpg?v=64528eac&sqp=CJyp0KIG&rs=AOn4CLCtowkc3z17vbp3_KNL-CUHcXrYuw)](https://www.youtube.com/watch?v=NiKEBlZyoCc)
+ 
 ### Useful Links for this project:
 - [DevLogs](https://docs.google.com/document/d/1LjeJ5W5CIBxbFlulhDBlaNdNTP2VWx7RZiV6apDHc5M/edit?usp=sharing)
 - [GitHub TruthorDare Repo](https://github.com/blakecraig25/Truth-or-Dare-Box)
